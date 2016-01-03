@@ -1,4 +1,5 @@
 #include <iostream>
+#include "WordManager.hpp"
 
 namespace ChineseQuizz
 {
@@ -8,6 +9,7 @@ namespace ChineseQuizz
 	int		_error;
 	std::string	_endingMessage;
 	std::string	_quizzFile;
+	ChineseQuizz::WordManager _wordManager;
 
     public:
 	App();

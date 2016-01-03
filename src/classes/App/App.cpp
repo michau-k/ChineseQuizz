@@ -22,8 +22,19 @@ ChineseQuizz::App::~App()
 int ChineseQuizz::App::launch(int ac, char **av)
 {
     checkArgs(ac, av);
-    
-    std::cout << _endingMessage << std::endl;
+    if (!_error)
+	{
+	    if (!_wordManager.buildListOfWords(_quizzFile))
+		{
+		    setError(-1);
+		    setEndingMessage("Error: " + getQuizzFile() + " is corupted");
+		}
+	    else
+		{
+		    _wordManager.shuffleWords();
+		}
+	}
+    std::cout << getEndingMessage() << std::endl;
     return _error;
 }
 
