@@ -8,14 +8,17 @@ SRCS_DIR =	./src
 
 CLASS_DIR =	$(SRCS_DIR)/classes
 
-INC_DIR =	$(CLASS_DIR)/App/
+INC_DIR =	-I$(CLASS_DIR)/App/ \
+		-I$(CLASS_DIR)/Word/
 
 SRCS =		$(SRCS_DIR)/main.cpp \
-		$(CLASS_DIR)/App/App.cpp
+		$(CLASS_DIR)/App/App.cpp \
+		$(CLASS_DIR)/Word/Word.cpp
+
 
 OBJS =		$(SRCS:.cpp=.o)
 
-CXXFLAGS =	-lboost_system -lboost_filesystem -I$(INC_DIR)
+CXXFLAGS =	-lboost_system -lboost_filesystem $(INC_DIR)
 
 all:		$(NAME)
 

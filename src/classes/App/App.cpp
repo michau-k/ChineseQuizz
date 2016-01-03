@@ -4,7 +4,7 @@
 /*
  * App class Constructor
  */
-ChineseQuizz::App::App() : _error(0), _endingMessage(""), _quizzFile("")
+ChineseQuizz::App::App() : _error(0), _endingMessage("Goodbye"), _quizzFile("")
 {
 }
 
@@ -22,8 +22,8 @@ ChineseQuizz::App::~App()
 int ChineseQuizz::App::launch(int ac, char **av)
 {
     checkArgs(ac, av);
-    std::cout << _endingMessage << std::endl;
     
+    std::cout << _endingMessage << std::endl;
     return _error;
 }
 
@@ -33,17 +33,24 @@ int ChineseQuizz::App::launch(int ac, char **av)
  */
 void ChineseQuizz::App::checkArgs(int ac, char **av)
 {
+    boost::filesystem::path file;
     std::string binName(av[0]);
 
     if (ac != 2)
 	{
 	    setError(-1);
-	    setEndingMessage("Usage : " + binName + " file.cqz");
+	    setEndingMessage("Usage: " + binName + " file.cqz");
 	    return ;
 	}
 
-    boost::filesystem::path file ("photo.jpg");
-    std::cout << file.extension() << std::endl;
+    file = av[1];
+    if (file.extension().compare(".cqz") != 0)
+	{
+	    setError(-1);
+	    setEndingMessage("Error: Wrong file format");
+	    return ;
+	}
+    setQuizzFile(av[1]);
 }
 
 /*
