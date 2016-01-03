@@ -1,3 +1,4 @@
+#include <boost/filesystem.hpp>
 #include "App.hpp"
 
 /*
@@ -20,6 +21,9 @@ ChineseQuizz::App::~App()
  */
 int ChineseQuizz::App::launch(int ac, char **av)
 {
+    checkArgs(ac, av);
+    std::cout << _endingMessage << std::endl;
+    
     return _error;
 }
 
@@ -29,6 +33,17 @@ int ChineseQuizz::App::launch(int ac, char **av)
  */
 void ChineseQuizz::App::checkArgs(int ac, char **av)
 {
+    std::string binName(av[0]);
+
+    if (ac != 2)
+	{
+	    setError(-1);
+	    setEndingMessage("Usage : " + binName + " file.cqz");
+	    return ;
+	}
+
+    boost::filesystem::path file ("photo.jpg");
+    std::cout << file.extension() << std::endl;
 }
 
 /*

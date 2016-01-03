@@ -1,4 +1,8 @@
+#include "App.hpp"
+
 int main(int ac, char **av)
 {
-    return 0;
+    ChineseQuizz::App app;
+
+    return (app.launch(ac, av));
 }
