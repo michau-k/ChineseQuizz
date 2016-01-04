@@ -31,7 +31,9 @@ int ChineseQuizz::App::launch(int ac, char **av)
 		}
 	    else
 		{
+		    _wordManager.printWords();
 		    _wordManager.shuffleWords();
+		    _wordManager.printWords();
 		}
 	}
     std::cout << getEndingMessage() << std::endl;
