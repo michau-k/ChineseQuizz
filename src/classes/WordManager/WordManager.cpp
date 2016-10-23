@@ -65,7 +65,7 @@ ChineseQuizz::Word * ChineseQuizz::WordManager::getNextWord()
 {
     ChineseQuizz::Word * nextWord = _words.back();
     _words.pop_back();
-    return NULL;
+    return nextWord;
 }
 
 /*
